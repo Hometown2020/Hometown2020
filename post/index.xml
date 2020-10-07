@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on 梦里轻烟的博客</title>
+    <link>/post.html</link>
+    <description>Recent content in Posts on 梦里轻烟的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 06 Oct 2020 23:40:15 +0800</lastBuildDate><atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>First</title>
+      <link>/post/first.html</link>
+      <pubDate>Tue, 06 Oct 2020 23:40:15 +0800</pubDate>
+      
+      <guid>/post/first.html</guid>
+      <description>hello world </description>
+    </item>
+    
+  </channel>
+</rss>
