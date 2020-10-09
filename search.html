@@ -6,21 +6,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Posts | 梦里轻烟的博客</title>
-    <meta property="og:title" content="Posts - 梦里轻烟的博客">
+    <title>搜索 | 梦里轻烟的博客</title>
+    <meta property="og:title" content="搜索 - 梦里轻烟的博客">
     <meta property="og:type" content="article">
         
         
     <meta name="Keywords" content="梦里轻烟,博客,">
-    <meta name="description" content="Posts">
+    <meta name="description" content="搜索页面">
         
     <meta name="author" content="梦里轻烟">
-    <meta property="og:url" content="/post.html">
+    <meta property="og:url" content="/search.html">
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 
     <link rel="stylesheet" href='./css/normalize.css'>
     <link rel="stylesheet" href='./css/style.css'>
-    <link rel="alternate" type="application/rss+xml+xml" href="./post/index.xml" title="梦里轻烟的博客" />
     <script type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     
@@ -50,7 +49,7 @@
             </div>
             <div>
                 <nav id="nav-menu" class="clearfix">
-                    <a class="current" href="">首页</a>
+                    <a class="" href="">首页</a>
                     
                     <a  href="./tools/" title="工具">工具</a>
                     
@@ -71,39 +70,71 @@
                 <div class="col-8" id="main">
                     
 <div class="res-cons">
-    
-    
+    <h3 class="archive-title">
+        搜索
+        <span class="keyword">哈哈</span>
+        的结果
+    </h3>
+
     <article class="post">
         <header>
             <h1 class="post-title">
-                <a href="./post/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%9C%A8vscode%E4%B8%8A%E9%85%8D%E7%BD%AEC%E7%8E%AF%E5%A2%83.html" title="如何快速在vscode配置C/C&#43;&#43;环境">如何快速在vscode配置C/C&#43;&#43;环境</a>
+                <a href="链接">标题</a>
             </h1>
         </header>
         <date class="post-meta meta-date">
-            2020年10月9日
+            2019年12月01日
         </date>
-        
-        <div class="post-meta">
-            <span>|</span>
-            
-            <span class="meta-category"><a href='./categories/vscode%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE'>vscode环境配置</a></span>
-            
-        </div>
-        
         <div class="post-content">
-            1.卸载重装vscode 2.下载vscode 3.下载MinGW 4.配置环境变量 5.配置c/c++环境 6.超完整的配置文件 7.常用扩展推荐 8.注意 9.后记 相信许多刚开始使用vscode的小伙伴们都有过这样的感受，明明按着网上的教程一步一步来，最终却总会出现一些奇奇怪怪的问题；配了几……
+            概要……
+            <p class="readmore"><a href="链接">阅读全文</a></p>
         </div>
-        <p class="readmore"><a href="./post/%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%9C%A8vscode%E4%B8%8A%E9%85%8D%E7%BD%AEC%E7%8E%AF%E5%A2%83.html">阅读全文</a></p>
     </article>
-    
-    
-    
-
-
-
-
 
 </div>
+
+<script type="text/javascript">
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+    };
+
+    $(document).ready(function () {
+        var q = getUrlParameter("q");
+        $("span.keyword").text(q);
+        $("article.post").remove();
+        $.ajax({
+            url: 'index.xml',
+            dataType: "xml",
+            success: function (data) {
+                $(data).find("item").each(function () {
+                    var item = $(this);
+                    var title = item.find("title").text();
+                    if (title.toLowerCase().indexOf(q.toLowerCase()) >= 0) {
+                        var url = item.find("link").text();
+                        var searchItem = `<article class="post"><header><h1 class="post-title"><a href="` + url + `">` + title + `</a></h1></header>`;
+                        var pubDate = new Date(item.find("pubDate").text())
+                        searchItem += `<date class="post-meta meta-date">` + pubDate.getFullYear() + `年` + (pubDate.getMonth() + 1) + `月` + pubDate.getDate() + `日</date>`;
+                        searchItem += `<div class="post-content">` + item.find("description").text() + `……<p class="readmore"><a href="` + url + `">阅读全文</a></p></div></article>`;
+
+                        $("div.res-cons").append(searchItem);
+                    }
+                });
+            }
+        });
+    });
+</script>
 
                     <footer id="footer">
     <div>
@@ -125,6 +156,16 @@
 </footer>
 
 
+    
+    <script type="text/javascript">
+        window.MathJax = {
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                processEscapes: true
+                }
+            };
+    </script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 
 <a id="rocket" href="#top"></a>
 <script type="text/javascript" src='./js/totop.js?v=0.0.0' async=""></script>
